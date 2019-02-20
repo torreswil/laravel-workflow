@@ -45,7 +45,6 @@ namespace Tests {
             $workflow->apply($object, 't1');
 
             $this->assertCount(28, $events);
-
             $this->assertInstanceOf(GuardEvent::class, $events[0]);
             $this->assertEquals('workflow.guard', $events[1]);
             $this->assertEquals('workflow.straight.guard', $events[2]);
@@ -80,6 +79,7 @@ namespace Tests {
             $this->assertEquals('workflow.guard', $events[25]);
             $this->assertEquals('workflow.straight.guard', $events[26]);
             $this->assertEquals('workflow.straight.guard.t2', $events[27]);
+
         }
     }
 }
