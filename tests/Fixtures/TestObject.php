@@ -3,5 +3,5 @@ namespace Tests\Fixtures;
 
 class TestObject
 {
-    public $marking;
+    public $marking = 'a';
 }

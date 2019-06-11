@@ -24,6 +24,9 @@ namespace Tests {
             $config = [
                 'straight' => [
                     'supports'    => [TestObject::class],
+                    'marking_store' => [
+                        'type' => 'single_state'
+                    ],
                     'places'      => ['a', 'b', 'c'],
                     'transitions' => [
                         't1' => [
@@ -40,10 +43,8 @@ namespace Tests {
 
             $registry = new WorkflowRegistry($config);
             $object = new TestObject;
-            $workflow = $registry->get($object);
-
+            $workflow = $registry->get($object,'straight');
             $workflow->apply($object, 't1');
-
             $this->assertCount(28, $events);
             $this->assertInstanceOf(GuardEvent::class, $events[0]);
             $this->assertEquals('workflow.guard', $events[1]);
